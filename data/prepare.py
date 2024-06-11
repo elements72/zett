@@ -92,6 +92,13 @@ if __name__ == "__main__":
             valid_data.append((text,))
 
             bar.update(1)
+            
+        valid_df = pd.DataFrame(valid_data)
+        valid_df.columns = ["text"]
+        valid_df.to_parquet(out_valid_dir / f"{lang}.parquet")
+
+        del valid_data
+        del valid_df
 
         for i in range(n_train_pages):
             try:
@@ -110,6 +117,4 @@ if __name__ == "__main__":
         train_df.columns = ["text"]
         train_df.to_parquet(out_train_dir / f"{lang}.parquet")
 
-        valid_df = pd.DataFrame(valid_data)
-        valid_df.columns = ["text"]
-        valid_df.to_parquet(out_valid_dir / f"{lang}.parquet")
+
