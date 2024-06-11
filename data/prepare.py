@@ -93,7 +93,7 @@ if __name__ == "__main__":
 
             bar.update(1)
             
-        valid_df = pd.DataFrame(valid_data)
+        valid_df = pd.DataFrame(valid_data, copy=False)
         valid_df.columns = ["text"]
         valid_df.to_parquet(out_valid_dir / f"{lang}.parquet")
 
@@ -113,7 +113,7 @@ if __name__ == "__main__":
 
             bar.update(1)
 
-        train_df = pd.DataFrame(train_data)
+        train_df = pd.DataFrame(train_data, copy=False)
         train_df.columns = ["text"]
         train_df.to_parquet(out_train_dir / f"{lang}.parquet")
 
